@@ -1,6 +1,8 @@
 # Learn External Secrets in K8s
 
+## Setup Vault 
 
+```
 k create ns vault
 k -n vault get all
 helm repo add hashicorp https://helm.releases.hashicorp.com
@@ -14,14 +16,18 @@ helm install vault -n vault --set='ui.enabled=true' \
 edit vault svc vault-internal to NodePort
 3 3
 copy keys and unseal
+
 Token: hvs.yVXZ9vxtEbGHM7ihEOReGYI3
 eLB1R5bv/qi4rpaxo75GYLU4hlopJnkQ8b+mJRW2jKWJ
 MqdWrcyPOFScxEBZTjK6tqwV+jZQOfX7q/68OG1zFNJT
 SsBeRbJD9n8esK2d0GdCWCDBvcW7o+dxpPjc+lAM1C0F
+```
+
 
 
 enable engine simple key value
 
+```
 helm repo add external-secrets https://charts.external-secrets.io
 
 helm install external-secrets \
@@ -30,8 +36,13 @@ helm install external-secrets \
   --create-namespace \
   --set installCRDs=true
 
+```
+
+```
 k -n external-secrets get po
 k get crd | grep externalsecrets
+```
+
 
 https://github.com/saiyam1814/external-secrets-operatos
 
